@@ -137,6 +137,7 @@ Your application:
 
 ### 2.2 Visual: The Complete Request Flow
 
+```
 ┌─────────────┐
 │ Browser │ (Hop 1)
 └──────┬──────┘
@@ -174,6 +175,7 @@ Your application:
 │ Response (JSON/HTML)
 │
 Browser
+```
 
 ### 2.3 From Request to Response: What Happens Inside Your Server
 
