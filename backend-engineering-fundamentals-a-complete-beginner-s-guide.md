@@ -112,6 +112,8 @@ _Simple analogy:_ Imagine a restaurant with a host stand at the entrance. The ho
 5. **Security**: Hide the actual application server details from the Internet
 
 **Example Nginx Configuration:**
+
+```
 server {
 server_name backend-demo.xyz;
 
@@ -123,6 +125,7 @@ server_name backend-demo.xyz;
     }
 
 }
+```
 
 This config says: "If a request comes to backend-demo.xyz, forward it to localhost:3001"
 
@@ -426,6 +429,7 @@ User B's frontend has no way to receive data from User A's frontend (both are is
 
 **The entire web application is a restaurant:**
 
+```
 ┌──────────────────────────────────────────────────────────┐
 │ RESTAURANT │
 ├──────────────────────────────────────────────────────────┤
@@ -449,6 +453,7 @@ User B's frontend has no way to receive data from User A's frontend (both are is
 │ │ to suppliers │ │
 └──────────────────────────────────────────────────────────┘
 User's Device AWS EC2 Server
+```
 
 **Key Points:**
 
@@ -783,6 +788,7 @@ button.addEventListener('click', async () => {
 // Optimistic update - turn red immediately
 button.style.color = 'red';
 
+```
     // Send request to backend
     const response = await fetch('/api/posts/54321/like', {
         method: 'POST',
@@ -794,6 +800,7 @@ button.style.color = 'red';
     });
 
 });
+```
 
 **Step 2: Request Travels to Backend**
 
@@ -805,6 +812,8 @@ button.style.color = 'red';
 - Node.js server → Receives request
 
 **Step 3: Backend Processing (Node.js)**
+
+```
 app.post('/api/posts/:postId/like', authenticateUser, async (req, res) => {
 const { userId } = req.body;
 const { postId } = req.params;
@@ -853,6 +862,7 @@ const { postId } = req.params;
     });
 
 });
+```
 
 **Step 4: Backend Returns Response**
 
@@ -887,6 +897,7 @@ showNotification('You liked this post!');
 
 When you deploy a real backend, it typically looks like this:
 
+```
 ┌─────────────────────────────────────────────────────────┐
 │ CLOUD PROVIDER (AWS/GCP/Azure) │
 │ │
@@ -931,6 +942,7 @@ When you deploy a real backend, it typically looks like this:
 │
 └─────────────────────────────────────
 (Reverse Proxy/CDN sits here too)
+```
 
 **What each component does:**
 
