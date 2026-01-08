@@ -353,6 +353,180 @@ Sometimes, v1 routes may return a deprecation notice in response:
 { "message": "v1/products is deprecated. Please migrate to v2/products" }
 ```
 
+## 🔁 **Route Versioning & Deprecation** (more context)
+
+![Image](https://www.intercom.com/blog/api-versioning/api-versioning-diagram/)
+
+![Image](https://media.licdn.com/dms/image/v2/D5622AQHa08Dkntv0Ow/feedshare-shrink_800/B56ZRoeVJuHsAk-/0/1736919650246?e=2147483647&t=kTl3qleMqhsPxkchC5w9isETxZdAG7zE_vSoBI5I_Xk&v=beta)
+
+![Image](https://developers.meetmarigold.com/engage/assets/terms/api-lifecycle.png)
+
+![Image](https://media.geeksforgeeks.org/wp-content/uploads/20241011134901133878/Differences-between-API-Versioning-and-Backward-Compatibility-in-System-Design.webp)
+
+---
+
+## 🧠 What Is **Route Versioning**?
+
+> **Route versioning** means exposing **different versions of the same API** so old clients keep working while new clients use improved behavior.
+
+In simple words:
+**You don’t break existing users when you change your API.**
+
+---
+
+## ❓ Why Version APIs at All?
+
+APIs change because:
+
+- Business rules evolve
+- Response shape changes
+- Fields are renamed or removed
+- Performance improvements require new behavior
+
+If you change an API **without versioning**:
+
+- Old apps break immediately ❌
+- Mobile apps in stores can’t update instantly ❌
+
+Versioning solves this safely.
+
+---
+
+## 🧭 Common Ways to Version Routes
+
+### 1️⃣ **URL Versioning** (Most Common)
+
+```
+/api/v1/users
+/api/v2/users
+```
+
+**Why it’s popular**
+
+- Very clear
+- Easy to route
+- Easy to deprecate
+
+📌 This is the **best choice for beginners**.
+
+---
+
+### 2️⃣ **Header Versioning**
+
+```
+GET /users
+API-Version: 2
+```
+
+**Pros**
+
+- Clean URLs
+
+**Cons**
+
+- Harder to debug
+- Less visible
+- More tooling required
+
+---
+
+### 3️⃣ **Query Parameter Versioning** (Not Recommended)
+
+```
+/users?version=2
+```
+
+Used rarely. Easy to misuse and cache incorrectly.
+
+---
+
+## 🧠 What Is **Deprecation**?
+
+> **Deprecation** means:
+> “This API version still works, but it will be removed in the future.”
+
+It’s a **warning phase**, not an immediate break.
+
+---
+
+## 🔄 Typical Deprecation Lifecycle
+
+1. **v1 released**
+2. **v2 released**
+3. v1 marked **deprecated**
+4. Clients are notified
+5. v1 continues working for a while
+6. v1 is eventually removed
+
+This gives clients time to migrate.
+
+---
+
+## 📣 How Do Clients Know an API Is Deprecated?
+
+Servers usually:
+
+- Add response headers
+- Update documentation
+- Send announcements
+
+Example headers:
+
+```
+Deprecation: true
+Sunset: 2026-06-01
+```
+
+Meaning:
+
+- This version will stop working on that date
+
+---
+
+## ⚙️ What Happens Inside the Backend?
+
+Internally, you usually have:
+
+```
+/v1/users → old controller + logic
+/v2/users → new controller + logic
+```
+
+- Same database
+- Different business rules
+- Different response formats
+
+---
+
+## 🚫 What Versioning Is NOT
+
+❌ Not for every small change
+❌ Not for bug fixes
+❌ Not for adding optional fields
+
+Use versioning when you make **breaking changes**.
+
+---
+
+## 🧠 Clean Mental Model
+
+> **Versioning protects clients.
+> Deprecation gives them time.**
+
+---
+
+## 🏢 Simple Analogy (At the End)
+
+- v1 → old road (still open)
+- v2 → new road (better)
+- Deprecation → “Old road closes next year” sign
+
+---
+
+## 📌 Final One-Line Summary
+
+> **Route versioning allows APIs to evolve without breaking existing clients, and deprecation provides a safe transition period before old versions are removed.**
+
 ---
 
 ## 9. Catch-All Routes (404 Handling)
