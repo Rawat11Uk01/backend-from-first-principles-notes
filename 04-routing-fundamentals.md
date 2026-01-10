@@ -2,8 +2,6 @@ Routing in backend development is the **system that decides which piece of serve
 
 ---
 
-## Google Docs–Ready Notes
-
 ### Title: Backend Routing – How Requests Find Their Way Home
 
 ---
